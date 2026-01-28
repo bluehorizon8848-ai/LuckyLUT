@@ -88,7 +88,7 @@ const App: React.FC = () => {
             <div className="relative aspect-square w-full">
                 
                 {/* Wireframe Container */}
-                <div className="absolute inset-0 border border-slate-800 bg-black/60 backdrop-blur-sm p-8 flex flex-col justify-between group hover:border-amber-500/30 transition-colors duration-700">
+                <div className="absolute inset-0 border border-slate-800 bg-black/60 backdrop-blur-sm p-8 flex flex-col justify-between group hover:border-amber-500/30 transition-colors duration-700 overflow-hidden">
                     
                     {/* Top Markers */}
                     <div className="flex justify-between items-start">
@@ -115,7 +115,7 @@ const App: React.FC = () => {
                         </div>
 
                         {/* Scanline */}
-                        <div className="absolute inset-0 w-full h-full bg-gradient-to-b from-transparent via-amber-500/5 to-transparent animate-scan"></div>
+                        <div className="absolute inset-0 w-full h-full bg-gradient-to-b from-transparent via-amber-500/5 to-transparent animate-scan pointer-events-none"></div>
                     </div>
 
                     {/* Bottom Data */}
