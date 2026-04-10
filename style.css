@@ -410,61 +410,117 @@ section {
 /* ===== Features ===== */
 .features { background: rgba(5, 5, 10, 0.6); }
 
-.feature-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 16px;
+/* Feature Tabs */
+.feature-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 40px;
 }
 
-.feature-card {
-  padding: 24px;
-  border-radius: var(--radius-md);
-  background: var(--color-surface);
+.feature-tab {
+  padding: 10px 28px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text-muted);
   border: 1px solid var(--color-border);
-  display: flex;
-  align-items: flex-start;
-  gap: 16px;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.03);
   transition: var(--transition);
 }
 
-.feature-card:hover {
+.feature-tab:hover {
   border-color: var(--color-border-hover);
-  transform: translateX(4px);
+  color: var(--color-amber-light);
 }
 
-.feature-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
+.feature-tab.active {
+  background: var(--color-amber-glow);
+  border-color: rgba(245, 158, 11, 0.3);
+  color: var(--color-amber);
+}
+
+/* LUT Grid */
+.lut-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+/* LUT Card */
+.lut-card {
+  padding: 20px;
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  backdrop-filter: blur(12px);
+  transition: var(--transition);
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+  cursor: default;
+}
+
+.lut-card:hover {
+  border-color: var(--color-border-hover);
+  background: var(--color-surface-hover);
+  transform: translateY(-3px);
+}
+
+.lut-card-thumb {
+  width: 80px;
+  height: 80px;
+  border-radius: 16px;
+  overflow: hidden;
   flex-shrink: 0;
-  margin-top: 5px;
+  border: 1px solid var(--color-border);
+  background: rgba(0, 0, 0, 0.3);
 }
 
-.feature-card h4 {
-  font-size: 15px;
+.lut-card-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.lut-card-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.lut-card-name {
+  font-size: 16px;
   font-weight: 700;
   color: #fff;
   margin-bottom: 4px;
 }
 
-.feature-card p {
+.lut-card-desc {
   font-size: 13px;
   color: var(--color-text-muted);
   line-height: 1.5;
+  margin-bottom: 10px;
 }
 
-/* Feature dot colors */
-.dot-mono { background: linear-gradient(135deg, #a0a0a0, #e5e5e5); }
-.dot-yellow { background: linear-gradient(135deg, #eab308, #fde047); }
-.dot-blue { background: linear-gradient(135deg, #2563eb, #60a5fa); }
-.dot-red { background: linear-gradient(135deg, #dc2626, #f87171); }
-.dot-orange { background: linear-gradient(135deg, #f97316, #fdba74); }
-.dot-green { background: linear-gradient(135deg, #65a30d, #a3e635); }
-.dot-burnt { background: linear-gradient(135deg, #c2410c, #fb923c); }
-.dot-purple { background: linear-gradient(135deg, #7c3aed, #a78bfa); }
-.dot-pink { background: linear-gradient(135deg, #db2777, #f472b6); }
-.dot-sky { background: linear-gradient(135deg, #0284c7, #7dd3fc); }
-.dot-film { background: linear-gradient(135deg, #78716c, #d6d3d1); }
+.lut-card-tip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: var(--radius-pill);
+  background: rgba(245, 158, 11, 0.08);
+  border: 1px solid rgba(245, 158, 11, 0.12);
+  font-size: 11px;
+  color: var(--color-amber);
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.lut-card-tip svg {
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
+}
 
 /* ===== Process ===== */
 .process-steps {
@@ -782,9 +838,13 @@ section {
 .reveal-delay-3 { transition-delay: 0.3s; }
 
 /* ===== Responsive ===== */
+@media (max-width: 639px) {
+  .lut-grid { grid-template-columns: 1fr; }
+  .lut-card-thumb { width: 64px; height: 64px; border-radius: 12px; }
+}
+
 @media (min-width: 640px) {
   .value-grid { grid-template-columns: repeat(3, 1fr); }
-  .feature-grid { grid-template-columns: repeat(2, 1fr); }
   .process-steps { flex-direction: row; gap: 0; }
   .process-step { flex-direction: column; text-align: center; flex: 1; }
   .step-connector { display: none; }
@@ -799,7 +859,7 @@ section {
   .hero-note { margin: 0; }
   .hero-card { display: block; }
 
-  .feature-grid { grid-template-columns: repeat(3, 1fr); }
+  .lut-grid { grid-template-columns: repeat(2, 1fr); }
 
   .footer .container {
     flex-direction: row;

@@ -114,25 +114,13 @@
         <h2 class="section-title" data-i18n="features.title">15 种预置风格</h2>
         <p class="section-subtitle" data-i18n="features.subtitle">10 种单色风格 + 5 种胶片模拟，覆盖日常创作所需</p>
       </div>
-      <div class="feature-grid">
-        <!-- Monochrome LUTs -->
-        <div class="feature-card reveal"><span class="feature-dot dot-mono"></span><div><h4>Mono</h4><p data-i18n="features.mono">经典黑白单色，纯粹质感</p></div></div>
-        <div class="feature-card reveal"><span class="feature-dot dot-yellow"></span><div><h4>Yellow</h4><p data-i18n="features.yellow">暖调明黄，阳光氛围</p></div></div>
-        <div class="feature-card reveal"><span class="feature-dot dot-blue"></span><div><h4>Blue</h4><p data-i18n="features.blue">冷调深蓝，清冽通透</p></div></div>
-        <div class="feature-card reveal"><span class="feature-dot dot-red"></span><div><h4>Red</h4><p data-i18n="features.red">浓郁红调，复古热烈</p></div></div>
-        <div class="feature-card reveal"><span class="feature-dot dot-orange"></span><div><h4>L. Orange</h4><p data-i18n="features.orange">柔和浅橙，日系清新</p></div></div>
-        <div class="feature-card reveal"><span class="feature-dot dot-green"></span><div><h4>Acid Green</h4><p data-i18n="features.green">荧光绿调，前卫跳脱</p></div></div>
-        <div class="feature-card reveal"><span class="feature-dot dot-burnt"></span><div><h4>Burnt Orange</h4><p data-i18n="features.burnt">焦橙暗调，秋日电影感</p></div></div>
-        <div class="feature-card reveal"><span class="feature-dot dot-purple"></span><div><h4>Electric Purple</h4><p data-i18n="features.purple">霓虹紫光，迷幻夜色</p></div></div>
-        <div class="feature-card reveal"><span class="feature-dot dot-pink"></span><div><h4>Hot Pink</h4><p data-i18n="features.pink">炽热粉红，活力张扬</p></div></div>
-        <div class="feature-card reveal"><span class="feature-dot dot-sky"></span><div><h4>Sky Blue</h4><p data-i18n="features.sky">天空蓝调，清爽明亮</p></div></div>
-        <!-- Film LUTs -->
-        <div class="feature-card reveal"><span class="feature-dot dot-film"></span><div><h4>Chrome</h4><p data-i18n="features.chrome">胶片铬色，经典还原</p></div></div>
-        <div class="feature-card reveal"><span class="feature-dot dot-film"></span><div><h4>Classic</h4><p data-i18n="features.classic">经典胶片，柔和对比</p></div></div>
-        <div class="feature-card reveal"><span class="feature-dot dot-film"></span><div><h4>Vivid</h4><p data-i18n="features.vivid">鲜艳胶片，饱和增强</p></div></div>
-        <div class="feature-card reveal"><span class="feature-dot dot-film"></span><div><h4>Film BW</h4><p data-i18n="features.filmbw">胶片黑白，银盐质感</p></div></div>
-        <div class="feature-card reveal"><span class="feature-dot dot-film"></span><div><h4>Warm</h4><p data-i18n="features.warm">暖调胶片，温柔色谱</p></div></div>
+      <!-- Category tabs -->
+      <div class="feature-tabs reveal">
+        <button class="feature-tab active" data-category="mono" data-i18n="features.tabMono">单色风格</button>
+        <button class="feature-tab" data-category="film" data-i18n="features.tabFilm">胶片模拟</button>
       </div>
+      <!-- LUT cards rendered by JS -->
+      <div class="lut-grid" id="lut-grid"></div>
     </div>
   </section>
 
@@ -254,6 +242,7 @@
     </div>
   </div>
 
+  <script src="lut-previews.js"></script>
   <script src="main.js"></script>
 </body>
 </html>

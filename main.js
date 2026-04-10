@@ -21,21 +21,8 @@ const I18N = {
     'features.tag': '功能特性',
     'features.title': '15 种预置风格',
     'features.subtitle': '10 种单色风格 + 5 种胶片模拟，覆盖日常创作所需',
-    'features.mono': '经典黑白单色，纯粹质感',
-    'features.yellow': '暖调明黄，阳光氛围',
-    'features.blue': '冷调深蓝，清冽通透',
-    'features.red': '浓郁红调，复古热烈',
-    'features.orange': '柔和浅橙，日系清新',
-    'features.green': '荧光绿调，前卫跳脱',
-    'features.burnt': '焦橙暗调，秋日电影感',
-    'features.purple': '霓虹紫光，迷幻夜色',
-    'features.pink': '炽热粉红，活力张扬',
-    'features.sky': '天空蓝调，清爽明亮',
-    'features.chrome': '胶片铬色，经典还原',
-    'features.classic': '经典胶片，柔和对比',
-    'features.vivid': '鲜艳胶片，饱和增强',
-    'features.filmbw': '胶片黑白，银盐质感',
-    'features.warm': '暖调胶片，温柔色谱',
+    'features.tabMono': '单色风格',
+    'features.tabFilm': '胶片模拟',
     'process.tag': '使用流程',
     'process.title': '三步开启',
     'process.s1.title': '扫码进入',
@@ -82,21 +69,8 @@ const I18N = {
     'features.tag': 'FEATURES',
     'features.title': '15 Preset Styles',
     'features.subtitle': '10 monochrome styles + 5 film simulations for everyday creative needs',
-    'features.mono': 'Classic monochrome, pure texture',
-    'features.yellow': 'Warm yellow, sunny vibes',
-    'features.blue': 'Cool blue, crisp and clear',
-    'features.red': 'Rich red, vintage warmth',
-    'features.orange': 'Soft orange, Japanese style',
-    'features.green': 'Acid green, bold and edgy',
-    'features.burnt': 'Burnt orange, autumn cinema',
-    'features.purple': 'Electric purple, neon nights',
-    'features.pink': 'Hot pink, vibrant energy',
-    'features.sky': 'Sky blue, fresh and bright',
-    'features.chrome': 'Film chrome, classic rendition',
-    'features.classic': 'Classic film, soft contrast',
-    'features.vivid': 'Vivid film, saturation boost',
-    'features.filmbw': 'Film BW, silver halide look',
-    'features.warm': 'Warm film, gentle palette',
+    'features.tabMono': 'Monochrome',
+    'features.tabFilm': 'Film Simulation',
     'process.tag': 'HOW IT WORKS',
     'process.title': 'Get Started in 3 Steps',
     'process.s1.title': 'Scan QR Code',
@@ -124,6 +98,59 @@ const I18N = {
   }
 };
 
+// ===== LUT Data with Shooting Tips =====
+const LUT_DATA = {
+  mono: [
+    { name: 'Mono', previewKey: 'pop-bw',
+      zh: { desc: '经典黑白单色，纯粹质感', tip: '适合建筑、街拍、人像轮廓，注意光影对比' },
+      en: { desc: 'Classic monochrome, pure texture', tip: 'Great for architecture, street, portrait silhouettes' } },
+    { name: 'Yellow', previewKey: 'pop-yellow',
+      zh: { desc: '暖调明黄，阳光氛围', tip: '适合午后阳光、花田、暖色系食物拍摄' },
+      en: { desc: 'Warm yellow, sunny vibes', tip: 'Perfect for golden hour, flower fields, warm food shots' } },
+    { name: 'Blue', previewKey: 'pop-blue',
+      zh: { desc: '冷调深蓝，清冽通透', tip: '适合蓝天大海、雨天街景、冷色调环境' },
+      en: { desc: 'Cool blue, crisp and clear', tip: 'Best for ocean, rainy streets, cool-tone scenes' } },
+    { name: 'Red', previewKey: 'pop-red',
+      zh: { desc: '浓郁红调，复古热烈', tip: '适合红色元素场景、落日、怀旧主题' },
+      en: { desc: 'Rich red, vintage warmth', tip: 'Ideal for red accents, sunsets, retro themes' } },
+    { name: 'L. Orange', previewKey: 'pop-light-orange',
+      zh: { desc: '柔和浅橙，日系清新', tip: '适合咖啡店、日常生活、柔光环境' },
+      en: { desc: 'Soft orange, Japanese style', tip: 'Ideal for cafe scenes, everyday life, soft lighting' } },
+    { name: 'Acid Green', previewKey: 'pop-acid-green',
+      zh: { desc: '荧光绿调，前卫跳脱', tip: '适合夜市霓虹、潮流穿搭、创意主题' },
+      en: { desc: 'Acid green, bold and edgy', tip: 'Great for neon signs, streetwear, creative concepts' } },
+    { name: 'Burnt Orange', previewKey: 'pop-burnt-orange',
+      zh: { desc: '焦橙暗调，秋日电影感', tip: '适合秋叶、暖色室内、复古咖啡色调' },
+      en: { desc: 'Burnt orange, autumn cinema', tip: 'Perfect for fall foliage, warm interiors, vintage tones' } },
+    { name: 'Electric Purple', previewKey: 'pop-electric-purple',
+      zh: { desc: '霓虹紫光，迷幻夜色', tip: '适合夜景、灯牌、都市霓虹街拍' },
+      en: { desc: 'Electric purple, neon nights', tip: 'Best for nightscape, neon signs, urban night photography' } },
+    { name: 'Hot Pink', previewKey: 'pop-hot-pink',
+      zh: { desc: '炽热粉红，活力张扬', tip: '适合花卉、甜品、活泼人像、色彩鲜明场景' },
+      en: { desc: 'Hot pink, vibrant energy', tip: 'Great for flowers, desserts, lively portraits' } },
+    { name: 'Sky Blue', previewKey: 'pop-sky-blue',
+      zh: { desc: '天空蓝调，清爽明亮', tip: '适合晴天户外、海滨、清新文艺风' },
+      en: { desc: 'Sky blue, fresh and bright', tip: 'Perfect for sunny outdoors, beach, art-house vibes' } }
+  ],
+  film: [
+    { name: 'Chrome', previewKey: 'film-Film-F-Chrome',
+      zh: { desc: '胶片铬色，经典还原', tip: '适合日常纪实、旅行拍摄，偏高饱和' },
+      en: { desc: 'Film chrome, classic rendition', tip: 'Great for documentary, travel — high saturation style' } },
+    { name: 'Classic', previewKey: 'film-Film-F-Classic',
+      zh: { desc: '经典胶片，柔和对比', tip: '适合人像、室内温暖场景、柔光环境' },
+      en: { desc: 'Classic film, soft contrast', tip: 'Ideal for portraits, warm interiors, soft diffused light' } },
+    { name: 'Vivid', previewKey: 'film-Film-G-Vivid',
+      zh: { desc: '鲜艳胶片，饱和增强', tip: '适合色彩丰富场景、壁画、花卉市场' },
+      en: { desc: 'Vivid film, saturation boost', tip: 'Best for colorful scenes, murals, flower markets' } },
+    { name: 'Film BW', previewKey: 'film-Film-L-BW',
+      zh: { desc: '胶片黑白，银盐质感', tip: '适合纪实摄影、情绪人像、雨天场景' },
+      en: { desc: 'Film BW, silver halide look', tip: 'Perfect for documentary, moody portraits, rainy days' } },
+    { name: 'Warm', previewKey: 'film-Film-P-Warm',
+      zh: { desc: '暖调胶片，温柔色谱', tip: '适合黄昏、家庭日常、暖色系环境' },
+      en: { desc: 'Warm film, gentle palette', tip: 'Ideal for dusk, family moments, warm-toned settings' } }
+  ]
+};
+
 const FAQ_DATA = {
   zh: [
     { q: '是否免费？', a: '目前完全免费使用，包括所有 15 种预置 LUT 风格和胶片模拟。后续可能推出额外风格扩展包。' },
@@ -139,12 +166,16 @@ const FAQ_DATA = {
     { q: 'What photo sources work?', a: 'Both real-time camera capture and gallery import. Apply LUT effects instantly after shooting, or restyle old photos.' },
     { q: 'Is my data safe?', a: 'All processing happens locally on your device. We never upload any photos to servers. Your photos stay yours.' },
     { q: 'Why does it sometimes export PNG?', a: 'JPG is the default format for best size and compatibility. In some environments, it falls back to PNG, which works fine for sharing.' },
-    { q: 'What if saving fails?', a: 'Please check that the mini-program has photo album permission. Go to WeChat Settings → find "Creative LUT Camera" → enable album access.' }
+    { q: 'What if saving fails?', a: 'Please check that the mini-program has photo album permission. Go to WeChat Settings > find "Creative LUT Camera" > enable album access.' }
   ]
 };
 
 // ===== State =====
 let currentLang = 'zh';
+let currentCategory = 'mono';
+
+// ===== SVG Icons =====
+const ICON_CAMERA = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>';
 
 // ===== DOM Ready =====
 document.addEventListener('DOMContentLoaded', () => {
@@ -152,6 +183,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initLanguageToggle();
   initQRModal();
   initFAQ();
+  initLUTGrid();
+  initFeatureTabs();
   initScrollReveal();
 });
 
@@ -175,22 +208,16 @@ function initLanguageToggle() {
 function applyLanguage() {
   const dict = I18N[currentLang];
   
-  // Update all data-i18n elements
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.getAttribute('data-i18n');
-    if (dict[key]) {
-      el.textContent = dict[key];
-    }
+    if (dict[key]) el.textContent = dict[key];
   });
 
-  // Update lang toggle active state
   document.getElementById('lang-en').className = currentLang === 'en' ? 'active' : '';
   document.getElementById('lang-zh').className = currentLang === 'zh' ? 'active' : '';
-
-  // Update HTML lang attribute
   document.documentElement.lang = currentLang === 'zh' ? 'zh-CN' : 'en';
 
-  // Re-render FAQ
+  renderLUTGrid();
   renderFAQ();
 }
 
@@ -214,10 +241,53 @@ function initQRModal() {
   });
 }
 
-// ===== FAQ =====
-function initFAQ() {
-  renderFAQ();
+// ===== Feature Tabs =====
+function initFeatureTabs() {
+  document.querySelectorAll('.feature-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      const category = tab.getAttribute('data-category');
+      if (category === currentCategory) return;
+      currentCategory = category;
+      document.querySelectorAll('.feature-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      renderLUTGrid();
+    });
+  });
 }
+
+// ===== LUT Grid =====
+function initLUTGrid() {
+  renderLUTGrid();
+}
+
+function renderLUTGrid() {
+  const grid = document.getElementById('lut-grid');
+  const items = LUT_DATA[currentCategory];
+  
+  grid.innerHTML = items.map(lut => {
+    const localized = lut[currentLang];
+    const previewSrc = (typeof LUT_PREVIEWS !== 'undefined' && LUT_PREVIEWS[lut.previewKey]) || '';
+    
+    return `
+      <div class="lut-card">
+        <div class="lut-card-thumb">
+          ${previewSrc ? '<img src="' + previewSrc + '" alt="' + lut.name + '" loading="lazy">' : ''}
+        </div>
+        <div class="lut-card-info">
+          <div class="lut-card-name">${lut.name}</div>
+          <div class="lut-card-desc">${localized.desc}</div>
+          <div class="lut-card-tip">
+            ${ICON_CAMERA}
+            <span>${localized.tip}</span>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+// ===== FAQ =====
+function initFAQ() { renderFAQ(); }
 
 function renderFAQ() {
   const list = document.getElementById('faq-list');
@@ -237,30 +307,19 @@ function renderFAQ() {
 }
 
 function toggleFAQ(index) {
-  const item = document.getElementById(`faq-item-${index}`);
+  const item = document.getElementById('faq-item-' + index);
   const isOpen = item.classList.contains('open');
-  
-  // Close all others
   document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
-  
-  // Toggle current
-  if (!isOpen) {
-    item.classList.add('open');
-  }
+  if (!isOpen) item.classList.add('open');
 }
 
 // ===== Scroll Reveal =====
 function initScrollReveal() {
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
+      if (entry.isIntersecting) entry.target.classList.add('visible');
     });
-  }, {
-    threshold: 0.1,
-    rootMargin: '0px 0px -40px 0px'
-  });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 }
