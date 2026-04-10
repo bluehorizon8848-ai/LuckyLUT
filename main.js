@@ -46,7 +46,8 @@ const I18N = {
     'footer.contact': '联系我们',
     'qr.title': '立即扫码体验',
     'qr.subtitle': '微信扫一扫，开启创意摄影',
-    'qr.close': '关闭'
+    'qr.close': '关闭',
+    'qr.floatLabel': '微信扫码体验'
   },
   en: {
     'nav.features': 'Features',
@@ -94,7 +95,8 @@ const I18N = {
     'footer.contact': 'Contact Us',
     'qr.title': 'Scan to Try',
     'qr.subtitle': 'Open WeChat, scan to start',
-    'qr.close': 'Close'
+    'qr.close': 'Close',
+    'qr.floatLabel': 'Scan to Try'
   }
 };
 
@@ -182,6 +184,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initNavbar();
   initLanguageToggle();
   initQRModal();
+  initFloatingQR();
   initFAQ();
   initLUTGrid();
   initFeatureTabs();
@@ -219,6 +222,24 @@ function applyLanguage() {
 
   renderLUTGrid();
   renderFAQ();
+}
+
+// ===== Floating QR =====
+function initFloatingQR() {
+  const floatingQR = document.getElementById('floating-qr');
+  const modal = document.getElementById('qr-modal');
+
+  // Show/hide on scroll
+  window.addEventListener('scroll', () => {
+    const show = window.scrollY > 300 && !modal.classList.contains('open');
+    floatingQR.classList.toggle('visible', show);
+  }, { passive: true });
+
+  // Click to open modal
+  floatingQR.addEventListener('click', () => {
+    modal.classList.add('open');
+    floatingQR.classList.remove('visible');
+  });
 }
 
 // ===== QR Modal =====
