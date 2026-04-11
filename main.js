@@ -8,6 +8,7 @@ const I18N = {
     'hero.title': '创意 LUT 相机',
     'hero.desc': '拍照或导入一张图，立即套用 LUT 风格。15 种预置风格 + 胶片模拟，轻量、直接、好上手。',
     'hero.cta': '立即扫码体验',
+    'hero.ctaWechat': '长按识别 立即体验',
     'hero.note': '15 种预置 LUT（10 单色 + 5 胶片模拟）。支持导入 .cube 文件，最多 20 个 LUT。本地处理，安全快捷。',
     'hero.cardLabel': '实拍样片展示',
     'value.tag': '核心优势',
@@ -45,9 +46,12 @@ const I18N = {
     'footer.terms': '用户协议',
     'footer.contact': '联系我们',
     'qr.title': '立即扫码体验',
+    'qr.titleWechat': '长按识别小程序码',
     'qr.subtitle': '微信扫一扫，开启创意摄影',
+    'qr.subtitleWechat': '长按下方二维码，即可打开小程序',
     'qr.close': '关闭',
-    'qr.floatLabel': '微信扫码体验'
+    'qr.floatLabel': '微信扫码体验',
+    'qr.floatLabelWechat': '长按识别体验'
   },
   en: {
     'nav.features': 'Features',
@@ -57,6 +61,7 @@ const I18N = {
     'hero.title': 'Creative LUT Camera',
     'hero.desc': 'Snap or import a photo, apply LUT styles instantly. 15 presets + film simulation — minimal, direct, easy.',
     'hero.cta': 'Scan to Try',
+    'hero.ctaWechat': 'Long Press to Open',
     'hero.note': '15 preset LUTs (10 monochrome + 5 film simulation). Supports .cube import, up to 20 LUTs. All processing is local.',
     'hero.cardLabel': 'Sample Effect Preview',
     'value.tag': 'KEY ADVANTAGES',
@@ -94,9 +99,12 @@ const I18N = {
     'footer.terms': 'Terms of Use',
     'footer.contact': 'Contact Us',
     'qr.title': 'Scan to Try',
+    'qr.titleWechat': 'Long Press to Open',
     'qr.subtitle': 'Open WeChat, scan to start',
+    'qr.subtitleWechat': 'Long press the QR code below to open',
     'qr.close': 'Close',
-    'qr.floatLabel': 'Scan to Try'
+    'qr.floatLabel': 'Scan to Try',
+    'qr.floatLabelWechat': 'Long Press to Try'
   }
 };
 
@@ -180,6 +188,9 @@ let currentCategory = 'mono';
 const ICON_CAMERA = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>';
 
 // ===== DOM Ready =====
+// Detect WeChat built-in browser
+const isWeChatBrowser = /MicroMessenger/i.test(navigator.userAgent);
+
 document.addEventListener('DOMContentLoaded', () => {
   initNavbar();
   initLanguageToggle();
@@ -190,6 +201,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initFeatureTabs();
   initScrollReveal();
   initHeroCarousel();
+  if (isWeChatBrowser) initWeChatMode();
 });
 
 // ===== Navbar Scroll =====
@@ -214,7 +226,10 @@ function applyLanguage() {
   
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.getAttribute('data-i18n');
-    if (dict[key]) el.textContent = dict[key];
+    // In WeChat browser, prefer Wechat-specific keys if available
+    const wcKey = isWeChatBrowser ? key + 'Wechat' : null;
+    const text = (wcKey && dict[wcKey]) || dict[key];
+    if (text) el.textContent = text;
   });
 
   document.getElementById('lang-en').className = currentLang === 'en' ? 'active' : '';
@@ -394,4 +409,27 @@ function initHeroCarousel() {
   // Pause on hover (desktop)
   carousel.closest('.hero-card').addEventListener('mouseenter', () => clearInterval(timer));
   carousel.closest('.hero-card').addEventListener('mouseleave', () => resetTimer());
+}
+
+// ===== WeChat In-App Browser Mode =====
+function initWeChatMode() {
+  // Add class for CSS hooks
+  document.body.classList.add('is-wechat');
+
+  // Re-apply language to pick up WeChat-specific strings
+  applyLanguage();
+
+  // Change CTA button icon to "long press" gesture
+  const scanIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3h4v4H6zM14 3h4v4h-4zM6 14h4v4H6z"/><circle cx="16" cy="16" r="2"/><path d="M16 12v2M20 16h-2"/></svg>';
+  document.querySelectorAll('#btn-scan svg, #btn-scan-bottom svg').forEach(svg => {
+    svg.outerHTML = scanIcon;
+  });
+
+  // Auto-open QR modal after a short delay (feels intentional, not jarring)
+  setTimeout(() => {
+    const modal = document.getElementById('qr-modal');
+    if (modal && !modal.classList.contains('open')) {
+      modal.classList.add('open');
+    }
+  }, 1500);
 }
