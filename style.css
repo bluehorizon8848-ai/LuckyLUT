@@ -946,6 +946,7 @@ section {
   .hero-title { display: none; }
   .hero-note { display: none; }
   .hero-card { order: -1; }
+  .hero-badge { display: inline-flex; order: -2; margin-bottom: 12px; }
   .hero-desc {
     font-size: 14px;
     margin-bottom: 16px;
