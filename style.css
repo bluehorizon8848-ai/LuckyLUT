@@ -899,6 +899,21 @@ section {
 .reveal-delay-3 { transition-delay: 0.3s; }
 
 /* ===== Responsive ===== */
+@media (max-width: 1023px) {
+  /* Mobile hero: image first, one-line intro + CTA only */
+  .hero { min-height: auto; padding-top: 80px; padding-bottom: 40px; }
+  .hero .container { gap: 24px; }
+  .hero-badge { display: none; }
+  .hero-title { display: none; }
+  .hero-note { display: none; }
+  .hero-card { order: -1; }
+  .hero-desc {
+    font-size: 14px;
+    margin-bottom: 16px;
+    max-width: 320px;
+  }
+}
+
 @media (max-width: 639px) {
   .lut-grid { grid-template-columns: 1fr; }
   .lut-card-thumb { width: 64px; height: 64px; border-radius: 12px; }
