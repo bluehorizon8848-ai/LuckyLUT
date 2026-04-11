@@ -64,9 +64,15 @@
       </div>
       <div class="hero-card reveal">
         <div class="hero-card-inner">
-          <img src="assets/sample.jpg" alt="样片展示" loading="eager">
+          <div class="hero-carousel" id="hero-carousel">
+            <img src="assets/sample.jpg" alt="样片展示 1" class="carousel-slide active" loading="eager">
+            <!-- 添加更多样片：将图片放入 assets/ 目录，在此添加 img 标签即可 -->
+            <!-- <img src="assets/sample-2.jpg" alt="样片展示 2" class="carousel-slide"> -->
+            <!-- <img src="assets/sample-3.jpg" alt="样片展示 3" class="carousel-slide"> -->
+          </div>
           <div class="hero-card-overlay">
             <span data-i18n="hero.cardLabel">实拍样片展示</span>
+            <div class="carousel-dots" id="carousel-dots"></div>
           </div>
         </div>
       </div>

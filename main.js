@@ -189,6 +189,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initLUTGrid();
   initFeatureTabs();
   initScrollReveal();
+  initHeroCarousel();
 });
 
 // ===== Navbar Scroll =====
@@ -343,4 +344,54 @@ function initScrollReveal() {
   }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+}
+
+// ===== Hero Carousel =====
+function initHeroCarousel() {
+  const carousel = document.getElementById('hero-carousel');
+  const dotsContainer = document.getElementById('carousel-dots');
+  if (!carousel || !dotsContainer) return;
+
+  const slides = carousel.querySelectorAll('.carousel-slide');
+  if (slides.length <= 1) {
+    // Single image: no dots, no rotation
+    dotsContainer.style.display = 'none';
+    return;
+  }
+
+  let current = 0;
+  let timer = null;
+
+  // Create dots
+  slides.forEach((_, i) => {
+    const dot = document.createElement('span');
+    dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+    dot.addEventListener('click', () => goTo(i));
+    dotsContainer.appendChild(dot);
+  });
+
+  function goTo(index) {
+    slides[current].classList.remove('active');
+    dotsContainer.children[current].classList.remove('active');
+    current = index;
+    slides[current].classList.add('active');
+    dotsContainer.children[current].classList.add('active');
+    resetTimer();
+  }
+
+  function next() {
+    goTo((current + 1) % slides.length);
+  }
+
+  function resetTimer() {
+    clearInterval(timer);
+    timer = setInterval(next, 4000);
+  }
+
+  // Start auto-rotation
+  resetTimer();
+
+  // Pause on hover (desktop)
+  carousel.closest('.hero-card').addEventListener('mouseenter', () => clearInterval(timer));
+  carousel.closest('.hero-card').addEventListener('mouseleave', () => resetTimer());
 }
